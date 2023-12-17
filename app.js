@@ -35,6 +35,9 @@ app.use('/santas', santaRoutes);
 app.get('/', (req, res) => {
   res.send('Le serveur est bien lancé !');
 });
+app.get('/groups', (req, res) => {
+  // Logique de la route /groups
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
