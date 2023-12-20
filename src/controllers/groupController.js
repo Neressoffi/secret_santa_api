@@ -3,8 +3,10 @@ const User = require('../models/User');
 
 exports.createGroup = async (req, res) => {
   try {
-    const { name,
-       members } = req.body;
+    const { 
+      name,
+      members
+     } = req.body;
 
     // Créer un nouveau groupe
     const newGroup = new Group({
@@ -71,5 +73,23 @@ exports.respondToInvitation = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+exports.deleteGroup =  async (req, res) => {
+  const groupId = req.params.groupId;
+ // console.log(groupId)
+  try {
+
+    const deletedGroup = await Group.findByIdAndDelete(groupId);
+
+    if (!deletedGroup) {
+      return res.status(404).json({ message: 'Group not found' });
+    }
+
+    return res.json({ message: 'Group deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };

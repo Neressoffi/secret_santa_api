@@ -2,22 +2,21 @@ const express = require('express');
 const router = express.Router();
 const groupController = require('../controllers/groupController');
 
-// Création d'un groupe avec une fonction de rappel (callback) définie
+// Création d'un groupe avec une fonction de rappel
 router.post('/create', groupController.createGroup);
 
-// Invitation de membres avec une fonction de rappel (callback) définie
+// Invitation de membres avec une fonction de rappel 
 router.post('/invite', groupController.inviteMembers);
 
-// Réponse aux invitations avec une fonction de rappel (callback) définie
+// Réponse aux invitations avec une fonction de rappel
 router.post('/respond', groupController.respondToInvitation);
+
+// Suppression d'un groupe
+router.delete('/:groupId', groupController.deleteGroup);
 
 // Obtenir la liste des groupes
 router.get('/', async (req, res) => {
   try {
-    // Utilisez le modèle ou la fonction appropriée pour obtenir la liste des groupes depuis la base de données
-    // Exemple : const groups = await Group.find();
-    // Envoyez la liste en tant que réponse
-    // Exemple : res.json(groups);
     res.send('Liste des groupes');
   } catch (error) {
     console.error(error);
