@@ -1,0 +1,24 @@
+
+///////////////////////////////
+Structure Génerale 
+///////////////////////////////
+
+ controllers
+|   |   |-- authController.js
+|   |   |-- groupController.js
+|   |   |-- santaController.js
+|   |
+|   |-- middlewares
+|   |   |-- authenticationMiddleware.js
+|   |
+|   |-- models
+|   |   |-- User.js
+|   |   |-- Group.js
+|   |   |-- SantaAssignment.js
+|   |
+|   |-- routes
+|   |   |-- authRoutes.js
+|   |   |-- groupRoutes.js
+|   |   |-- santaRoutes.js
+|   |
+|   |-- app.js

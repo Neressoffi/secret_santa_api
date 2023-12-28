@@ -28,7 +28,7 @@ exports.register = async (req, res) => {
     // Enregistrer l'utilisateur dans la base de données
     await newUser.save();
 
-    res.status(201).json({ message: 'Utilisateur a eter bien Enregistere avec  success !!!' });
+    res.status(201).json({ message: 'Utilisateur à eter bien Enregistere avec  success !!!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
