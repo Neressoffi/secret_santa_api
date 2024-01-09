@@ -1,24 +1,34 @@
 
 ///////////////////////////////
 Structure Génerale 
-///////////////////////////////
+//////////////////////////////
 
- controllers
-|   |   |-- authController.js
-|   |   |-- groupController.js
-|   |   |-- santaController.js
-|   |
-|   |-- middlewares
-|   |   |-- authenticationMiddleware.js
-|   |
-|   |-- models
-|   |   |-- User.js
-|   |   |-- Group.js
-|   |   |-- SantaAssignment.js
-|   |
-|   |-- routes
-|   |   |-- authRoutes.js
-|   |   |-- groupRoutes.js
-|   |   |-- santaRoutes.js
-|   |
-|   |-- app.js
+|-- controllers
+|   |-- authController.js
+|   |-- groupController.js
+|   |-- santaController.js
+|
+|-- middlewares
+|   |-- authenticationMiddleware.js
+|
+|-- models
+|   |-- User.js
+|   |-- Group.js
+|   |-- SantaAssignment.js
+|
+|-- public
+|   |-- styles.css
+|   |-- script.js
+|
+|-- routes
+|   |-- authRoutes.js
+|   |-- groupRoutes.js
+|   |-- santaRoutes.js
+|
+|-- views
+|   |-- index.ejs
+|
+|-- app.js
+|-- Document.txt
+|-- package-lock.json
+|-- package.json

@@ -5,6 +5,11 @@ const cors = require('cors');
 
 const app = express();
 
+// Middleware pour gérer les données JSON
+//app.use(express.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(cors());
+
 // Importer les différentes routes
 const authRoutes = require('./src/routes/authRoutes');
 const groupRoutes = require('./src/routes/groupRoutes');

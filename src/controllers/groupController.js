@@ -1,6 +1,24 @@
 const Group = require('../models/Group');
 const User = require('../models/User');
 
+exports.adminGroups = (req, res) => {
+  const groups = Group.getAllGroups(); 
+  res.render('admin_groups', { groups });
+};
+// Affiche les membres d'un groupe à l'administrateur
+exports.viewGroupMembers = (req, res) => {
+  const groupId = req.params.groupId;
+  const members = Group.getGroupMembers(groupId); 
+  res.render('group_members', { members });
+};
+// Supprime un groupe à l'administrateur
+exports.deleteGroup = (req, res) => {
+  const groupId = req.params.groupId;
+  Group.deleteGroupById(groupId); 
+  res.redirect('/groups/admin');
+};
+
+
 exports.createGroup = async (req, res) => {
   try {
     const { 
