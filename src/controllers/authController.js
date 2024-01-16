@@ -3,17 +3,19 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
-const jwtSecretKey = 'yourSecretKey';
+const SECRET_KEY = require('../utils/key');
 
 exports.register = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    console.log(req.body);
+    // console.log(req);
+
+    const {firstname, lastname, phone, email, username, password, roles} = req.body;
+    // console.log(req.body);
 
     // Vérifier si l'utilisateur existe déjà
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({username});
     if (existingUser) {
-      return res.status(409).json({ error: 'Utilisateur existe déjàs' });
+      return res.status(409).json({error: 'Utilisateur existe déjàs'});
     }
 
     // Hasher le mot de passe
@@ -21,17 +23,22 @@ exports.register = async (req, res) => {
 
     // Créer un nouvel utilisateur
     const newUser = new User({
-      username,
+      firstname: firstname,
+      lastname: lastname,
+      phone: phone,
+      email: email,
+      username: username,
+      roles: roles,
       password: hashedPassword,
     });
 
     // Enregistrer l'utilisateur dans la base de données
     await newUser.save();
 
-    res.status(201).json({ message: 'Utilisateur à eter bien Enregistere avec  success !!!' });
+    res.status(201).json({ message: 'Utilisateur a eter bien Enregistere avec  success !!!' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erreur interne du serveur' });
+    res.status(500).json({ error: 'Erreur serveur' });
   }
 };
 
@@ -52,11 +59,32 @@ exports.login = async (req, res) => {
     }
 
     // Générer le token JWT
-    const token = jwt.sign({ userId: user._id, username: user.username }, jwtSecretKey, { expiresIn: '1h' });
+    const token = jwt.sign({userId: user._id, username: user.username}, SECRET_KEY, {expiresIn: '1h'});
 
-    res.status(200).json({ token });
+    res.status(200).json({token});
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({error: 'Erreur serveur'});
   }
 };
+
+exports.retrieve = async (req, res) => {
+  try {
+    let users = {}
+    // Check if a 'role' query parameter is provided
+    const givenRole = req.query.role || '';
+    // console.log(givenRole);
+    if(givenRole && givenRole.length > 0){
+      users = await User.find({ roles: { $regex: givenRole, $options: 'i' } });
+    }
+    else {
+      users = await User.find();
+    }
+    // Send the users as JSON in the response
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erreur serveur');
+  }
+};
+

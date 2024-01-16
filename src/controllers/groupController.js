@@ -1,24 +1,6 @@
 const Group = require('../models/Group');
 const User = require('../models/User');
 
-exports.adminGroups = (req, res) => {
-  const groups = Group.getAllGroups(); 
-  res.render('admin_groups', { groups });
-};
-// Affiche les membres d'un groupe à l'administrateur
-exports.viewGroupMembers = (req, res) => {
-  const groupId = req.params.groupId;
-  const members = Group.getGroupMembers(groupId); 
-  res.render('group_members', { members });
-};
-// Supprime un groupe à l'administrateur
-exports.deleteGroup = (req, res) => {
-  const groupId = req.params.groupId;
-  Group.deleteGroupById(groupId); 
-  res.redirect('/groups/admin');
-};
-
-
 exports.createGroup = async (req, res) => {
   try {
     const { 
@@ -35,10 +17,10 @@ exports.createGroup = async (req, res) => {
     // Enregistrer le groupe dans la base de données
     await newGroup.save();
 
-    res.status(201).json({ message: 'Groupe créé avec succès.' });
+    res.status(201).json({ message: 'Group created successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Erreur serveur' });
   }
 };
 
@@ -49,7 +31,7 @@ exports.inviteMembers = async (req, res) => {
     // Trouver le groupe par ID
     const group = await Group.findById(groupId);
     if (!group) {
-      return res.status(404).json({ error: 'Groupe non trouvé' });
+      return res.status(404).json({ error: 'Group not found' });
     }
 
     // Ajouter de nouveaux membres au groupe
@@ -58,10 +40,10 @@ exports.inviteMembers = async (req, res) => {
     // Enregistrer les modifications dans la base de données
     await group.save();
 
-    res.status(200).json({ message: 'Membres invités avec succès.' });
+    res.status(200).json({ message: 'Members invited successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erreur interne du serveur.' });
+    res.status(500).json({ error: 'Erreur serveur' });
   }
 };
 
@@ -72,12 +54,12 @@ exports.respondToInvitation = async (req, res) => {
     // Trouver le groupe par ID
     const group = await Group.findById(groupId);
     if (!group) {
-      return res.status(404).json({ error: 'Groupe non trouvé' });
+      return res.status(404).json({ error: 'Group not found' });
     }
 
     // Vérifier si l'utilisateur est membre du groupe
     if (!group.members.includes(userId)) {
-      return res.status(403).json({ error: 'Utilisateur n est pas membre du groupe.' });
+      return res.status(403).json({ error: 'User is not a member of the group' });
     }
 
     // Mettre à jour la réponse de l'utilisateur
@@ -87,10 +69,10 @@ exports.respondToInvitation = async (req, res) => {
     // Enregistrer les modifications dans la base de données
     await group.save();
 
-    res.status(200).json({ message: 'Réponse enregistrée avec succès' });
+    res.status(200).json({ message: 'Response recorded successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erreur interne du serveur' });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
@@ -102,12 +84,12 @@ exports.deleteGroup =  async (req, res) => {
     const deletedGroup = await Group.findByIdAndDelete(groupId);
 
     if (!deletedGroup) {
-      return res.status(404).json({ message: 'Groupe non trouvé' });
+      return res.status(404).json({ message: 'Group not found' });
     }
 
-    return res.json({ message: 'Groupe supprimé avec succès' });
+    return res.json({ message: 'Group deleted successfully' });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Erreur interne du serveur' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };

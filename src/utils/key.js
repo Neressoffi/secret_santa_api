@@ -1,0 +1,1 @@
+module.exports = 'azerty!@#$%&qwerty12345678@secure';

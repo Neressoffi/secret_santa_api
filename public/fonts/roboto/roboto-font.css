@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('fonts/roboto-regular-webfont.eot');
+    src: url('fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/roboto-regular-webfont.woff2') format('woff2'),
+    url('fonts/roboto-regular-webfont.woff') format('woff'),
+    url('fonts/roboto-regular-webfont.ttf') format('truetype'),
+    url('fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-style: normal;
+    font-weight: 300;
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+    src: url('fonts/roboto-light-webfont.eot');
+    src: url('fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/roboto-light-webfont.woff2') format('woff2'),
+    url('fonts/roboto-light-webfont.woff') format('woff'),
+    url('fonts/roboto-light-webfont.ttf') format('truetype'),
+    url('fonts/roboto-light-webfont.svg#robotolight') format('svg');
+    font-family: 'Roboto Light';
+    font-style: normal;
+    font-weight: 300;
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+
+}
+
+@font-face {
+    font-family: 'Roboto Condensed Bold';
+    src: url('fonts/robotocondensed-bold-webfont.eot');
+    src: url('fonts/robotocondensed-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/robotocondensed-bold-webfont.woff2') format('woff2'),
+    url('fonts/robotocondensed-bold-webfont.woff') format('woff'),
+    url('fonts/robotocondensed-bold-webfont.ttf') format('truetype'),
+    url('fonts/robotocondensed-bold-webfont.svg#roboto_condensedbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('fonts/robotocondensed-regular-webfont.eot');
+    src: url('fonts/robotocondensed-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/robotocondensed-regular-webfont.woff2') format('woff2'),
+    url('fonts/robotocondensed-regular-webfont.woff') format('woff'),
+    url('fonts/robotocondensed-regular-webfont.ttf') format('truetype'),
+    url('fonts/robotocondensed-regular-webfont.svg#roboto_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
